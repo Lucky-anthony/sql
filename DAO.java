@@ -90,4 +90,34 @@ public class DAO
 
         return true;
     }
+    
+     public static synchronized ArrayList<User> select_all()
+    {
+        ArrayList<User> users = new ArrayList<>();
+        String sql = "SELECT id, name, second_name, email FROM user";
+
+        try (Connection conn = connect();
+             Statement stmt = conn.createStatement())
+        {
+
+            ResultSet rs = stmt.executeQuery(sql);
+
+            while(rs.next())
+            {
+                int id = rs.getInt("id");
+                String name = rs.getString("name");
+                String second_name = rs.getString("second_name");
+                String email = rs.getString("email");
+
+                users.add(new User(id, name, second_name, email));
+            }
+            rs.close();
+        } catch (SQLException e)
+        {
+            System.out.println(e.getMessage());
+            return users;
+        }
+
+        return users;
+    }
 }
