@@ -21,7 +21,8 @@ public class Main extends Application
     Button ok = new Button("ADD USER");
     TextField number = new TextField();
     Button generate = new Button("GENERATE");
-
+    
+    View v = new View();
     @Override
     public void start(Stage primaryStage) throws Exception
     {
@@ -40,6 +41,7 @@ public class Main extends Application
             System.exit(0);
         });
         primaryStage.show();
+        v.show();
     }
 
     public void init()
